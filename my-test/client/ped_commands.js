@@ -1,8 +1,10 @@
 
-// Moved out of commands.js
-// This seems to work now
-addCommandHandler("createped", function (command, text) {
-	let player = localPlayer;
+// If none of the values are set, the ped is set to just wander around.
+// givePedWeapon bool: If this is true the ped will get a weapon
+// doesPedHatePlayer bool: If this is true it will make the ped kill the player
+// doesPedEnterVehicle bool: If this is true the ped will enter a vehicle, TODO Setup
+function createPed(givePedWeapon, doesPedHatePlayer, doesPedEnterVehicle){
+    let player = localPlayer;
 	let playerCoords = player.position;
 
 	// https://gtamods.com/wiki/Ped_type
@@ -12,8 +14,7 @@ addCommandHandler("createped", function (command, text) {
 	let playerY = playerCoords.y + 3;
 	let playerZ = playerCoords.z + 1.5;
 
-
-	// 1: Ped Type
+    // 1: Ped Type
 	// 2: Ped Model
 	// 3: X
 	// 4: Y
@@ -63,30 +64,42 @@ addCommandHandler("createped", function (command, text) {
 		}
 
 		tempCiv.position = pedPosition;
-		// 1: Ped
-		// 2: Weapon - https://gtamods.com/wiki/List_of_Weapons_(GTA4)
-		// 3: Ammo
-		// 4: Show/Hide
-		// Set to pistol.
-		giveWeaponToChar(tempCiv, 7, 100, true);
 
-		// Test for setting the char accuracy
-		// This seems to work.
-		// setCharAccuracy(tempCiv, 75);
+        if(givePedWeapon){
+            // 1: Ped
+		    // 2: Weapon - https://gtamods.com/wiki/List_of_Weapons_(GTA4)
+		    // 3: Ammo
+		    // 4: Show/Hide
+            // Set to pistol, they seem to run away if I do no weapon or melee weapons.
+            giveWeaponToChar(tempCiv, 7, 100, true);
+            // giveWeaponToChar(tempCiv, 1, 100, true);
+            // Test for setting the char accuracy
+		    // This seems to work.
+		    // setCharAccuracy(tempCiv, 75);
+        }
 
-		// Test for setting them as an enemy
-		setCharAsEnemy(tempCiv, true);
+        if(doesPedHatePlayer){
+		    // Test for setting them as an enemy
+		    // setCharAsEnemy(player, true);
 
-		// These seem to work, the ped starts aiming at and attacking the player.
-		taskAimGunAtChar(tempCiv, player, 2000);
-		taskCombat(tempCiv, player);
+		    // These seem to work, the ped starts aiming at and attacking the player.
+		    taskAimGunAtChar(tempCiv, player, 2000);
+		    taskCombat(tempCiv, player);
+        }
 
+        if(!givePedWeapon && !doesPedHatePlayer && !doesPedEnterVehicle){
+            let taskWanderStandard = natives.taskWanderStandard;
+            taskWanderStandard(tempCiv);
+        }
 
 		// Not sure what the mission char does.
 		natives.setCharAsMissionChar(tempCiv, true);
 		natives.setCharStayInCarWhenJacked(tempCiv, true);
+    }
+}
 
-	}
-
-
+// Moved out of commands.js
+// This seems to work now
+addCommandHandler("createped", function (command, text) {
+    createPed(false, false, false);
 });

@@ -1,39 +1,5 @@
 // This seems to work now on the client.
 
-// I renamed the other command to createcar
-// addCommandHandler("createcar", function(command, text) {
-//     // console.log("Test");
-//     // https://wiki.gtaconnected.com/Resources/GTASA/VehicleModels
-//     // https://wiki.gtaconnected.com/gta.createVehicle
-//     // 
-    
-
-
-//     // let player = client.player;
-//     let player = localPlayer;
-//     // let playerPos = client.player.position;
-//     let playerPos = player.position;
-//     // Add 3 to the X and Y.
-//     let vehicleSpawnPos = [playerPos.x + 3, playerPos.y + 3, playerPos.z];
-//     // let vehicleSpawnPos = [car1posX, car1posY, car1posZ];
-
-//     let tempCar = 0
-
-//     // Create the vehicle
-//     // var vehicle = gta.createVehicle(415, vehicleSpawnPos);
-//     // Infernus GTA 4
-//     // https://wiki.gtaconnected.com/Resources/GTAIV/VehicleModels
-//     let infernus = 418536135;
-//     var vehicle = gta.createVehicle(infernus, vehicleSpawnPos);
-//     // TODO Figure out how to get natives to work with this.
-//     // let vehicle = natives.createCar(infernus, vehicleSpawnPos, tempCar, true);
-//     // var vehicle = natives.createCar(infernus, vehicleSpawnPos, false);
-//     addToWorld(vehicle);
-
-//     // Warp the player into the vehicle
-//     player.warpIntoVehicle(vehicle, 0);
-// });
-
 addCommandHandler("createboat", function(command, text) {
     let player = localPlayer;
     let playerPos = player.position;
@@ -48,7 +14,39 @@ addCommandHandler("createboat", function(command, text) {
     player.warpIntoVehicle(vehicle, 0);
 });
 
-// TODO Look into using switch statements for this.
+// Using natives
+// This works now, I forgot to request the model.
+function createVehicleNative(){
+    let player = localPlayer;
+    let playerPos = player.position;
+    // Add 3 to the X and Y.
+    let vehicleSpawnPos = [playerPos.x + 3, playerPos.y + 3, playerPos.z];
+    let requestModel = natives.requestModel;
+
+    let createCar = natives.createCar; // 1: Model, 2: X, 3: Y, 4: Z, 5: Car handle, 6: Always set to true
+
+    let infernus = 418536135;
+    // Request the model
+    requestModel(infernus);
+
+    let vehicle = createCar(infernus, vehicleSpawnPos, true);
+}
+
+// TODO Test this.
+function addPedIntoVehicle(ped, vehicle){
+    let taskWarpCharIntoCarAsDriver = natives.taskWarpCharIntoCarAsDriver;
+    let doesVehicleExist = natives.doesVehicleExist;
+
+    if(doesVehicleExist(vehicle)){
+        taskWarpCharIntoCarAsDriver(ped, vehicle);
+    }
+}
+
+addCommandHandler("cveht", function(command, text){
+    createVehicleNative();
+});
+
+// Using GTA Connected
 addCommandHandler("createveh", function(command, text){
     let player = localPlayer;
     let playerPos = player.position;
@@ -59,7 +57,7 @@ addCommandHandler("createveh", function(command, text){
     let sabre2 = 1264386590;
     let annihilator = 837858166;
 
-    let pcj600 = -909201658; 
+    let pcj600 = -909201658;
 
     switch(text){
         case "1":

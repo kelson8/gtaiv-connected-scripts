@@ -90,9 +90,18 @@ function warpPlayerVehicle(posX, posY, posZ){
 function warpPlayerFadeIn(posX, posY, posZ){
 	let doScreenFadeOut = natives.doScreenFadeOut;
 	let doScreenFadeIn = natives.doScreenFadeIn;
+	let loadScene = natives.loadScene;
 
+	let requestCollisionAtPosn = natives.requestCollisionAtPosn;
+	
 	doScreenFadeOut(1000);
-	player.position = [posX, posY, posZ]
+	// This seems to work.
+	requestCollisionAtPosn([posX, posY, posZ]);
+	player.position = [posX, posY, posZ];
+	// This seems to freeze the game for a second, TODO Fix this to work, it should fix the map taking a second to load in.
+	// loadScene([posX, posY, posZ]);
+
+
 	doScreenFadeIn(1000);
 }
 

@@ -6,11 +6,16 @@ addCommandHandler("removeveh", function(command, text) {
 	let player = localPlayer;
 	let tempCar = 0;
 	let isInVehicle = natives.isCharInAnyCar(player);
+    
+    let deleteCar = natives.deleteCar;
+    let markCarAsNoLongerNeeded = natives.markCarAsNoLongerNeeded;
 
 
     if(isInVehicle){
         let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-        natives.deleteCar(vehicle);
+        // natives.deleteCar(vehicle);
+        deleteCar(vehicle);
+        markCarAsNoLongerNeeded(vehicle);
     }
 });
 
