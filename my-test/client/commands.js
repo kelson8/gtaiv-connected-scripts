@@ -97,13 +97,14 @@ addCommandHandler("maxwl", function (command, text) {
 ///////////////
 
 // https://gtamods.com/wiki/List_of_Weapons_(GTA4)
-// Give the player poolcue, grenades, pistol, mp5, ak47, rocket launcher, Sniper
+// Give the player poolcue, grenades, pistol, shotgun, mp5, ak47, rocket launcher, Sniper
 addCommandHandler("weapon1", function (command, text) {
 	// https://wiki.gtaconnected.com/ped.giveWeapon
 	// player.giveWeapon(29, 999, false);
 	player.giveWeapon(2, 99, false); // Pool cue
 	player.giveWeapon(4, 999, false); // Grenades
-	player.giveWeapon(7, 999, false); // Pistol 
+	player.giveWeapon(7, 999, false); // Pistol
+	player.giveWeapon(10, 999, false); // Shotgun
 	player.giveWeapon(13, 999, false); // MP5
 	player.giveWeapon(14, 999, false); // AK47
 	player.giveWeapon(16, 999, false); // Rocket Launcher
@@ -234,44 +235,7 @@ addCommandHandler("setmaxwl", function (command, text) {
 // });
 
 
-///////////////
-// Warps
-///////////////
 
-
-// Taken from v-sandbox
-addCommandHandler("goto", function (command, text) {
-
-	let splitText = text.split(" ");
-	let positionX = Number(splitText[0].replace(",", ""));
-	let positionY = Number(splitText[1].replace(",", ""));
-	let positionZ = Number(splitText[2].replace(",", ""));
-
-	if (localPlayer.vehicle != null) {
-		localPlayer.vehicle.velocity = new Vec3(0.0, 0.0, 0.0);
-		localPlayer.vehicle.turnVelocity = new Vec3(0.0, 0.0, 0.0);
-		localPlayer.vehicle.position = new Vec3(positionX, positionY, positionZ);
-	} else {
-		localPlayer.velocity = new Vec3(0.0, 0.0, 0.0);
-		localPlayer.turnVelocity = new Vec3(0.0, 0.0, 0.0);
-		localPlayer.position = new Vec3(positionX, positionY, positionZ);
-	}
-})
-
-addCommandHandler("warp", function (command, text) {
-	switch (text) {
-		// Parking lot #1
-		case "test1":
-			player.position = [car1posX + 3, car1posY + 3, car1posZ];
-			message("You have been teleported to parking lot #1.")
-			break;
-		case "garage1":
-			player.position = [garage1PosX, garage1PosY, garage1PosZ];
-			break;
-		default:
-			message("Invalid warp! Warp list: test1, garage1");
-	}
-});
 
 ///////////////
 // Test
@@ -285,9 +249,34 @@ addCommandHandler("opengarage", function (command, text) {
 
 // Close a garage, this doesn't seem to work.
 addCommandHandler("closegarage", function (command, text) {
-	natives.closeGarage("BxGRG1");
+	let isGarageOpen = natives.isGarageOpen;
+
+	if (isGarageOpen) {
+		natives.closeGarage("BxGRG1");
+	}
+	
 });
 
+// Attempt to start a game script
+// This works now? I think I just figured out how to start the mission scripts and stuff.
+addCommandHandler("startscript", function(command, text) {
+	// https://gtamods.com/wiki/START_NEW_SCRIPT
+	// This script launches the computer in game.
+	let scriptName = "computerMain";
+	// let scriptName = "SPcellphone";
+	// Script names: darts, go_on_date, SPcellphoneEndCall, faustin5_fire, Ilyena_calls,
+	// SPcellphone, ambControlLoader, MultiplayerTutorial, emergencyCall, taxi
+	startScript(scriptName);
+});
+
+// This starts the cutscenes but kills the game when it is skipped or exited.
+// addCommandHandler("startcs", function(command, text){
+// 	natives.startCutsceneNow("rpbad1");
+// 	let hasCutsceneFinished = native.hasCutsceneFinished;
+// 	while(!hasCutsceneFinished){
+// 		natives.wait(0);
+// 	}
+// });
 
 
 
