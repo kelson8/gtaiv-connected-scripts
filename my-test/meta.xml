@@ -1,0 +1,10 @@
+<meta>
+	<!-- <script language="javascript" type="server" src="spawn_vehicles_s.js" /> -->
+	<script language="javascript" type="client" src="spawn_vehicles_c.js" />
+	<script language="javascript" type="client" src="commands_c.js" />
+	<script language="javascript" type="client" src="vehicle_commands_c.js" />
+
+	<script src="config.js" type="client" language="javascript" />
+	<script src="config.js" type="server" language="javascript" />
+	
+</meta>
