@@ -6,34 +6,34 @@ let player = localPlayer;
 let playerPos = player.position;
 
 // https://forum.gtaconnected.com/index.php/topic,37.0.html
-let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife", "Baseball Bat", 
-	"Shovel", "Pool Cue", "Katana", "Chainsaw", "Purple Dildo", 
-	"Dildo", "Vibrator", "Silver Vibrator", "Flowers", "Cane", "Grenade", 
-	"Teargas", "Molotov Cocktail", "Unknown", "Unknown", "Unknown", 
-	"9mm", "Silenced 9mm", "Desert Eagle", "Shotgun", "Sawnoff Shotgun", 
-	"Combat Shotgun", "Uzi", "MP5", "AK-47", "M4", "Tec-9", "Country Rifle", 
-	"Sniper Rifle", "RPG", "HS Rocket", "Flamethrower", "Minigun", "Satchel Charge", 
-	"Detonator", "Spraycan", "Fire Extinguisher", "Camera", "Night Vision Goggles", 
+let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife", "Baseball Bat",
+	"Shovel", "Pool Cue", "Katana", "Chainsaw", "Purple Dildo",
+	"Dildo", "Vibrator", "Silver Vibrator", "Flowers", "Cane", "Grenade",
+	"Teargas", "Molotov Cocktail", "Unknown", "Unknown", "Unknown",
+	"9mm", "Silenced 9mm", "Desert Eagle", "Shotgun", "Sawnoff Shotgun",
+	"Combat Shotgun", "Uzi", "MP5", "AK-47", "M4", "Tec-9", "Country Rifle",
+	"Sniper Rifle", "RPG", "HS Rocket", "Flamethrower", "Minigun", "Satchel Charge",
+	"Detonator", "Spraycan", "Fire Extinguisher", "Camera", "Night Vision Goggles",
 	"Thermal Goggles", "Parachute", "Cellphone", "Jetpack", "Skateboard"];
 
-	// TODO Figure out how to make this work for my values in config.js.
+// TODO Figure out how to make this work for my values in config.js.
 // It acts like they don't exist but it works for the blip command.
 // gta.createBlip([groveX, groveY, groveZ], 8);
 
 
 // https://wiki.gtaconnected.com/Resources/GTASA/RadarBlips
 // addCommandHandler("blip", function(command, text){
-	// gta.createBlip([groveX, groveY, groveZ], 8);
-	// Why was this function reversed compared to the wiki?
-	// This is using the vec3 for argument 1, and the blip for argument 2.
-	// gta.createBlip(player.position, 8);
+// gta.createBlip([groveX, groveY, groveZ], 8);
+// Why was this function reversed compared to the wiki?
+// This is using the vec3 for argument 1, and the blip for argument 2.
+// gta.createBlip(player.position, 8);
 // });
 
 
 // Teleport to spawn
 // https://github.com/squishylemon/Lspawns/blob/main/Client/player.js
 // addCommandHandler("spawn", function(command, text, client) {
-addCommandHandler("spawn", function(command, text) {
+addCommandHandler("spawn", function (command, text) {
 	// let player = client.player;
 	// if(player != null) {
 	// 	// let playerPos = client.player.position;
@@ -50,39 +50,44 @@ addCommandHandler("spawn", function(command, text) {
 // Vehicle
 ///////////////
 
+// TODO Move these into vehicle_commands.js
 // Blow up the current vehicle, this is incomplete.
-addCommandHandler("blowup", function(command, text) {
-	// TODO Fix this to actually work
-
-	if(player.isInVehicle){
-		let vehicle = player.vehicle;
-		vehicle.blow();
-	}
-});
 
 // Fix the players current vehicle
-addCommandHandler("fixveh", function(command, text) {
-	if(player.isInVehicle){
+addCommandHandler("fixveh", function (command, text) {
+	if (player.isInVehicle) {
 		let vehicle = player.vehicle;
 		// player.vehicle.fix();
 		vehicle.fix();
 	}
 });
 
+// I figured out how to check if a player is in a vehicle.
+addCommandHandler("explodeveh", function (command, text) {
+	let player = localPlayer;
+	let tempCar = 0;
+	let isInVehicle = natives.isCharInAnyCar(player);
+
+	if (isInVehicle) {
+		let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+		natives.explodeCar(vehicle, true, false);
+		// message("You are in a vehicle");
+	} else {
+		message("You are not in a vehicle.");
+	}
+});
 
 ///////////////
 // Wanted level
 ///////////////
 
 // Clear the players wanted level
-addCommandHandler("clearwl", function(command, text) {
+addCommandHandler("clearwl", function (command, text) {
 	player.wantedLevel = 0;
 });
 
-
-
 // Give the player 6 stars
-addCommandHandler("maxwl", function(command, text) {
+addCommandHandler("maxwl", function (command, text) {
 	player.wantedLevel = 6;
 });
 
@@ -93,7 +98,7 @@ addCommandHandler("maxwl", function(command, text) {
 
 // https://gtamods.com/wiki/List_of_Weapons_(GTA4)
 // Give the player poolcue, grenades, pistol, mp5, ak47, rocket launcher, Sniper
-addCommandHandler("weapon1", function(command, text) {
+addCommandHandler("weapon1", function (command, text) {
 	// https://wiki.gtaconnected.com/ped.giveWeapon
 	// player.giveWeapon(29, 999, false);
 	player.giveWeapon(2, 99, false); // Pool cue
@@ -104,44 +109,11 @@ addCommandHandler("weapon1", function(command, text) {
 	player.giveWeapon(16, 999, false); // Rocket Launcher
 	player.giveWeapon(18, 999, false); // Sniper
 	message("You have been given most of the weapons!");
-	// player.giveWeapon(26, 999, false);
-	// player.giveWeapon(29, 999, false);
-	// player.giveWeapon(30, 999, false);
 });
 
 ///////////////
 // Player
 ///////////////
-
-// addCommandHandler("", function(){
-
-// });
-
-// addCommandHandler("", function(){
-
-// });
-
-// addCommandHandler("", function(){
-
-// });
-
-// addCommandHandler("", function(){
-
-// });
-
-// addCommandHandler("", function(){
-
-// });
-
-// addCommandHandler("", function(){
-
-// });
-
-// addCommandHandler("", function(){
-
-// });
-
-
 
 let pInvincible = false;
 
@@ -153,28 +125,28 @@ let pInvincible = false;
 if(localPlayer.position.distance(spawnPosition) <= 100) {
 }
 */
-addCommandHandler("god", function(command, text) {
+addCommandHandler("god", function (command, text) {
 	pInvincible = !pInvincible;
-    if(pInvincible) {
-        
-            localPlayer.invincible = false;
-            // 
-			natives.setCharProofs(localPlayer, false, false, false, false, false);
-			message("Invincibility disabled.");
-        } else {
-            localPlayer.invincible = true;
-            natives.setCharProofs(localPlayer, true, true, true, true, true);
-			message("Invincibility enabled.");
-			
-    	}
+	if (pInvincible) {
+
+		localPlayer.invincible = false;
+		// 
+		natives.setCharProofs(localPlayer, false, false, false, false, false);
+		message("Invincibility disabled.");
+	} else {
+		localPlayer.invincible = true;
+		natives.setCharProofs(localPlayer, true, true, true, true, true);
+		message("Invincibility enabled.");
+
+	}
 });
 
 // TODO Fix this to work, it should toggle the bike helmet on or off the player
 let helmet = false;
-addCommandHandler("helmet", function(command, text) {
+addCommandHandler("helmet", function (command, text) {
 	helmet = !helmet;
 	player = localPlayer;
-	if(helmet){
+	if (helmet) {
 		player.giveHelmet();
 	} else {
 		player.removeHelmet();
@@ -182,7 +154,7 @@ addCommandHandler("helmet", function(command, text) {
 });
 
 // Set the players health and armor to max
-addCommandHandler("heal", function(command, text){
+addCommandHandler("heal", function (command, text) {
 	player.health = 100;
 	player.armour = 250;
 });
@@ -190,13 +162,13 @@ addCommandHandler("heal", function(command, text){
 // Kill the player
 // Well I don't know what changed but this works now..
 // It sometimes doesn't work if the player respawns.
-addCommandHandler("kill", function(command, text) {
+addCommandHandler("kill", function (command, text) {
 	player.health = 0;
 	player.armour = 0;
 });
 
 // Display the players current coords.
-addCommandHandler("coords", function(command, text) {
+addCommandHandler("coords", function (command, text) {
 	let pos = player.position;
 	// Theres too many decimals, I'll remove them here
 	let posx = pos.x.toFixed(3);
@@ -206,9 +178,9 @@ addCommandHandler("coords", function(command, text) {
 	message('Your coords are X: ' + posx + " Y: " + posy + " Z:" + posz);
 });
 
-addCommandHandler("sky", function(command, text){
+addCommandHandler("sky", function (command, text) {
 	let player = localPlayer;
-    let playerPos = player.position;
+	let playerPos = player.position;
 	playerPos.z = playerPos.z + 50;
 	player.position = [playerPos.x, playerPos.y, playerPos.z];
 	message("Good luck on your death! You shouldn't have typed this...")
@@ -218,8 +190,8 @@ addCommandHandler("sky", function(command, text){
 
 // Set your wanted level
 // This actually works.
-addCommandHandler("setmaxwl", function(command, text){
-	switch(text){
+addCommandHandler("setmaxwl", function (command, text) {
+	switch (text) {
 		case "0":
 			natives.setMaxWantedLevel(0);
 			message("Set max wanted level to 0");
@@ -268,7 +240,7 @@ addCommandHandler("setmaxwl", function(command, text){
 
 
 // Taken from v-sandbox
-addCommandHandler("goto", function(command, text){
+addCommandHandler("goto", function (command, text) {
 
 	let splitText = text.split(" ");
 	let positionX = Number(splitText[0].replace(",", ""));
@@ -284,19 +256,10 @@ addCommandHandler("goto", function(command, text){
 		localPlayer.turnVelocity = new Vec3(0.0, 0.0, 0.0);
 		localPlayer.position = new Vec3(positionX, positionY, positionZ);
 	}
-	// if(text[1] && text[2] && text[3]){
-	// 	player.position = [text[1], text[2], text[3]];
-	// 	message("You have been teleported.");
-	// } else {
-	// 	message("You need to specify an X, Y, and Z!");
-	// }
 })
 
-
-addCommandHandler("warp", function(command, text) {
-	
-	switch(text){
-	// if(text == "spawn"){
+addCommandHandler("warp", function (command, text) {
+	switch (text) {
 		// Parking lot #1
 		case "test1":
 			player.position = [car1posX + 3, car1posY + 3, car1posZ];
@@ -305,15 +268,8 @@ addCommandHandler("warp", function(command, text) {
 		case "garage1":
 			player.position = [garage1PosX, garage1PosY, garage1PosZ];
 			break;
-		// Grove street
-		// case "grove":
-		// 	player.position = [groveX, groveY, groveZ];
-		// 	message("You have been teleported to Grove Street.");
-		// 	break;
-			
 		default:
 			message("Invalid warp! Warp list: test1, garage1");
-			
 	}
 });
 
@@ -323,33 +279,80 @@ addCommandHandler("warp", function(command, text) {
 
 // 722.57110000, 1383.07900000, 13.30010000
 // Open a garage
-addCommandHandler("opengarage", function(command, text){
+addCommandHandler("opengarage", function (command, text) {
 	natives.openGarage("BxGRG1");
 });
 
 // Close a garage, this doesn't seem to work.
-addCommandHandler("closegarage", function(command, text){
+addCommandHandler("closegarage", function (command, text) {
 	natives.closeGarage("BxGRG1");
 });
 
 
-// I figured out how to check if a player is in a vehicle.
-addCommandHandler("blowupveh", function(command, text){
-	let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
 
-	if(isInVehicle) {
-		let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-		natives.explodeCar(vehicle, true, false);
-		// message("You are in a vehicle");
-	} else {
-		message("You are not in a vehicle.");
+
+addCommandHandler("createped", function (command, text) {
+	let player = localPlayer;
+	let playerCoords = player.position;
+
+	// https://gtamods.com/wiki/Ped_type
+	// https://gtamods.com/wiki/List_of_models_hashes#Peds
+
+	let playerX = playerCoords.x + 3;
+	let playerY = playerCoords.y + 3;
+	let playerZ = playerCoords.z + 1.5;
+
+
+	// 1: Ped Type
+	// 2: Ped Model
+	// 3: X
+	// 4: Y
+	// 5: Z
+	// 6: Variable to store handle
+	// 7: Unknown, always set to 1 (true)
+
+	// natives.createChar(civFemale, angiePed, [playerX, playerY, playerZ], ped, true);
+	// Oops this crashed it.
+	
+	// Taken idea from v-sandbox in ped.js
+	// TODO Fix this to work, they spawn in but their back is broken or something.
+	// Their texture doesn't even look right.
+	if (game.game == GAME_GTA_IV) {
+		let pedPosition = [playerX, playerY, playerZ]
+		let ped = 0;
+		let angiePed = 4167490662;
+		let civMale = 1;
+		let civFemale = 2;
+		let tempCiv = false;
+
+		// First request the model.
+		natives.requestModel(angiePed);
+		// Then load the objects now
+		natives.loadAllObjectsNow();
+
+		if (natives.hasModelLoaded(angiePed)) {
+			// tempCiv = natives.createChar(civFemale, angiePed, [playerX, playerY, playerZ], true);
+			tempCiv = natives.createChar(civMale, angiePed, [playerX, playerY, playerZ], true);
+		}
+
+		if(!tempCiv){
+			message("The ped could not be added!");
+			return false;
+		}
+
+		tempCiv.position = pedPosition;
+
+		// Umm I think this is needed? Their back is broken lol.
+		natives.setCharAsMissionChar(tempCiv, true);
+		natives.setCharStayInCarWhenJacked(tempCiv, true);
+
 	}
+
+
 });
 
 
-addCommandHandler("scmtest", function(command, text) {
+addCommandHandler("scmtest", function (command, text) {
 	// gta.scriptCommand("ADD_BLIP_FOR_COORD", 0, 0, 0);
 	// natives.ADD_BLIP_FOR_COORD(0, 0, 0);
 
