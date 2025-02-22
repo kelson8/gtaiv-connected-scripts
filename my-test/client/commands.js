@@ -126,15 +126,22 @@ addCommandHandler("weapon1", function (command, text) {
 // 722.57110000, 1383.07900000, 13.30010000
 // Open a garage
 addCommandHandler("opengarage", function (command, text) {
-	natives.openGarage("BxGRG1");
+	let isGarageClosed = natives.isGarageClosed;
+	let openGarage = natives.openGarage;
+
+	if(isGarageClosed("BxGRG1")){
+		openGarage("BxGRG1");
+	}
+	
 });
 
 // Close a garage, this doesn't seem to work.
 addCommandHandler("closegarage", function (command, text) {
 	let isGarageOpen = natives.isGarageOpen;
+	let closeGarage = natives.closeGarage;
 
-	if (isGarageOpen) {
-		natives.closeGarage("BxGRG1");
+	if (isGarageOpen("BxGRG1")) {
+		closeGarage("BxGRG1");
 	}
 	
 });
@@ -150,16 +157,6 @@ addCommandHandler("startscript", function(command, text) {
 	// SPcellphone, ambControlLoader, MultiplayerTutorial, emergencyCall, taxi
 	startScript(scriptName);
 });
-
-// This starts the cutscenes but kills the game when it is skipped or exited.
-// addCommandHandler("startcs", function(command, text){
-// 	natives.startCutsceneNow("rpbad1");
-// 	let hasCutsceneFinished = native.hasCutsceneFinished;
-// 	while(!hasCutsceneFinished){
-// 		natives.wait(0);
-// 	}
-// });
-
 
 // TODO Figure this out for San Andreas
 addCommandHandler("scmtest", function (command, text) {

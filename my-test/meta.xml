@@ -8,6 +8,9 @@
 	<!-- Events -->
 	<script language="javascript" type="client" src="client/events.js" />
 
+	<!-- Test commands -->
+	<script language="javascript" type="client" src="client/test/cutscene_commands.js" />
+
 	<!-- Misc functions for my resource -->
 	<script language="javascript" type="client" src="client/functions.js" />
 	<!-- So far, just gravity commands. -->
