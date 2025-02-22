@@ -34,14 +34,11 @@ let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife",
 // https://github.com/squishylemon/Lspawns/blob/main/Client/player.js
 // addCommandHandler("spawn", function(command, text, client) {
 addCommandHandler("spawn", function (command, text) {
-	// let player = client.player;
-	// if(player != null) {
-	// 	// let playerPos = client.player.position;
-	// }
-	// ped.position(0, 0, 3);
-
-	// localPlayer.position = [spawnX, spawnY, spawnZ];
-	player.position = [spawnX, spawnY, spawnZ];
+	if(isPlayerInVehicle()){
+		warpPlayerVehicle(spawnPosX, spawnPosY, spawnPosZ);
+	} else {
+		warpPlayerFadeIn(spawnPosX, spawnPosY, spawnPosZ);
+	}
 	message("You have been teleported to the spawn");
 
 });

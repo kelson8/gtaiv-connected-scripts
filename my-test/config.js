@@ -1,9 +1,9 @@
 
 // Warp locations
 
-let spawnX = -559.0752;
-let spawnY = 1167.843;
-let spawnZ = 11.338;
+let spawnPosX = -1164.9
+let spawnPosY = 1871.4
+let spawnPosZ = 7.0;
 
 let car1posX = -559.5;
 let car1posY = 1139.4;

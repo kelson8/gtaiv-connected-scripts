@@ -105,9 +105,18 @@ function warpPlayerFadeIn(posX, posY, posZ){
 	doScreenFadeIn(1000);
 }
 
-// TODO Add vehicle teleport option.
 function teleportPlayer(teleportLocation){
 	switch (teleportLocation) {
+
+		// Spawn, at party mode spawn.
+		case "spawn":
+			if(isPlayerInVehicle()){
+				warpPlayerVehicle(spawnPosX, spawnPosY, spawnPosZ);
+			} else {
+				warpPlayerFadeIn(spawnPosX, spawnPosY, spawnPosZ);
+			}
+			break;
+
 		// Parking lot #1
 		case "test1":
 			if(isPlayerInVehicle()){
@@ -163,7 +172,7 @@ function teleportPlayer(teleportLocation){
 
         // Party mode spawn
 		default:
-			message("Invalid warp! Warp list: test1, garage1, airport1, hospital.");
+			message("Invalid warp! Warp list: spawn, test1, garage1, airport1, hospital.");
 	// }
 	}
 }
