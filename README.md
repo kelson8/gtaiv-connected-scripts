@@ -12,9 +12,14 @@ TODO Restructure files like this and test it.
 
 # Features
 Files (client folder):
-* blip_commands.js - This is a test for adding a blip, I can add the blip but I cannot remove it.
 
-commands.js - This has a bunch of commands, list below
+<details>
+<summary> List of commands in blip_commands.js </summary>
+
+* /toggleblip (This toggles the blip, currently set to test1 warp.)
+
+</details>
+
 
 <details>
 <summary> List of commands in commands.js </summary>

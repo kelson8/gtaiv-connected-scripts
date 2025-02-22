@@ -7,25 +7,36 @@ let pInvincible = false;
 // I modified this a bit to figure it out.
 // Toggle god mode on/off
 
+// TODO Figure out permissions for this.
+// I may need to use these in the server events or something.
+// https://wiki.gtaconnected.com/client.administrator
+let clientAdmin = localClient.administrator;
+
 /*
 	This could be useful if I want spawn protection or something.
 if(localPlayer.position.distance(spawnPosition) <= 100) {
 }
 */
 addCommandHandler("god", function (command, text) {
-	pInvincible = !pInvincible;
-	if (pInvincible) {
+	// if(client.administrator){
+	// if(clientAdmin){
+		pInvincible = !pInvincible;
+		if (pInvincible) {
+	
+			localPlayer.invincible = false;
+			// 
+			natives.setCharProofs(localPlayer, false, false, false, false, false);
+			message("Invincibility disabled.");
+		} else {
+			localPlayer.invincible = true;
+			natives.setCharProofs(localPlayer, true, true, true, true, true);
+			message("Invincibility enabled.");
+	
+		}
+	// } else {
+	// 	message("You don't have permission!");
+	// }
 
-		localPlayer.invincible = false;
-		// 
-		natives.setCharProofs(localPlayer, false, false, false, false, false);
-		message("Invincibility disabled.");
-	} else {
-		localPlayer.invincible = true;
-		natives.setCharProofs(localPlayer, true, true, true, true, true);
-		message("Invincibility enabled.");
-
-	}
 });
 
 // TODO Fix this to work, it should toggle the bike helmet on or off the player

@@ -42,7 +42,7 @@ function removeBlip(){
     blipEnabled = false;
 }
 
-addCommandHandler("bliptest", function(command, text) {
+addCommandHandler("toggleblip", function(command, text) {
     // let blip = addBlipForCoord();
     let doesBlipExist = natives.doesBlipExist(tempBlip);
 
