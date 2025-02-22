@@ -1,21 +1,31 @@
 // Blip sprite list: https://public.sannybuilder.com/GTA4/blips/
 
-// TODO Figure out how to remove a blip on the map.
+let tempBlip = 0;
+
 // TODO Figure out how to not make this a destination blip.
-// TODO Make this not stay on the game forever.
-// addCommandHandler("addblip", function(command, text){
-//     let position = [car1posX, car1posY, car1posZ];
-//     let tempBlip = 0;
+// I finally got this working!!! Thats amazing.
+// This shows a blip, sets the value of tempBlip to the blip and can be removed in the command.
+function addBlipForCoord(){
+    let position = [car1posX, car1posY, car1posZ];
+ 
+    let blip = natives.addBlipForCoord(position, tempBlip);
+    
 
-//     let blip = natives.addBlipForCoord(position, tempBlip);
-//     let doesBlipExist = natives.doesBlipExist(tempBlip);
+    tempBlip = blip;
+    return blip;
+}
 
-//     // Check if blip doesn't exist, if so create it.
-//     if(!doesBlipExist){
-//         natives.changeBlipSprite(tempBlip, 30);
-//     } else {
-//         natives.removeBlip(tempBlip);
-//     }
+addCommandHandler("bliptest", function(command, text) {
+    // let blip = addBlipForCoord();
+    let doesBlipExist = natives.doesBlipExist(tempBlip);
+
+    if(!doesBlipExist){
+        addBlipForCoord();
+    } else {
+        natives.removeBlip(tempBlip);
+    }
+});
+
     
 //     // natives
 // });
