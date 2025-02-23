@@ -59,11 +59,35 @@ addCommandHandler("createveh", function(command, text){
 
     let pcj600 = -909201658;
 
+    let phantom = -2137348917;
+
+    let dukes = 723973206;
+
+    // TODO Test this
+	let tempCar = 0;
+	let isInVehicle = natives.isCharInAnyCar(player);
+
+
+    // TODO Make remove the player vehicle if a new one is spawned.
+
+
     switch(text){
         case "1":
-            var vehicle = gta.createVehicle(infernus, vehicleSpawnPos);
-            // Warp the player into the vehicle
-            player.warpIntoVehicle(vehicle, 0);
+            // This makes it to where it wont run if the player is in a vehicle but doesn't remove it.
+            if (isInVehicle) {
+                let storeCarCharIsInNoSave = natives.storeCarCharIsInNoSave;
+                let deleteCar = natives.deleteCar;
+
+                storeCarCharIsInNoSave(player, tempCar);
+                // deleteCar(storeCarCharIsInNoSave);
+                // deleteCar(tempCar);
+                deleteCar(tempCar);
+            } else {
+                var vehicle = gta.createVehicle(infernus, vehicleSpawnPos);
+                // Warp the player into the vehicle
+                player.warpIntoVehicle(vehicle, 0);
+            }
+
             break;
         case "2":
             var vehicle = gta.createVehicle(turismo, vehicleSpawnPos);
@@ -81,8 +105,16 @@ addCommandHandler("createveh", function(command, text){
             var vehicle = gta.createVehicle(pcj600, vehicleSpawnPos);
             player.warpIntoVehicle(vehicle, 0);
             break;
+        case "6":
+            var vehicle = gta.createVehicle(phantom, vehicleSpawnPos);
+            player.warpIntoVehicle(vehicle, 0);
+            break;
+        case "7":
+            var vehicle = gta.createVehicle(dukes, vehicleSpawnPos);
+            player.warpIntoVehicle(vehicle, 0);
+            break;
         default:
-            message("Usage: /createveh <num>; 1: Infernus, 2: Turismo, 3: Sabre 2, 4: Annihilator, 5: PCJ 600");
+            message("Usage: /createveh <num>; 1: Infernus, 2: Turismo, 3: Sabre 2, 4: Annihilator, 5: PCJ 600, 6: Phantom, 7: Dukes");
             break;
     }
 });

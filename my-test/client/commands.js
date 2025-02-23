@@ -17,6 +17,8 @@ let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife",
 	"Thermal Goggles", "Parachute", "Cellphone", "Jetpack", "Skateboard"];
 
 // TODO Figure out how to make this work for my values in config.js.
+
+// TODO Figure out how to clear the chat with a command.
 // It acts like they don't exist but it works for the blip command.
 // gta.createBlip([groveX, groveY, groveZ], 8);
 
@@ -43,36 +45,6 @@ addCommandHandler("spawn", function (command, text) {
 
 });
 
-///////////////
-// Vehicle
-///////////////
-
-// TODO Move these into vehicle_commands.js
-// Blow up the current vehicle, this is incomplete.
-
-// Fix the players current vehicle
-addCommandHandler("fixveh", function (command, text) {
-	if (player.isInVehicle) {
-		let vehicle = player.vehicle;
-		// player.vehicle.fix();
-		vehicle.fix();
-	}
-});
-
-// I figured out how to check if a player is in a vehicle.
-addCommandHandler("explodeveh", function (command, text) {
-	let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
-
-	if (isInVehicle) {
-		let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-		natives.explodeCar(vehicle, true, false);
-		// message("You are in a vehicle");
-	} else {
-		message("You are not in a vehicle.");
-	}
-});
 
 ///////////////
 // Wanted level

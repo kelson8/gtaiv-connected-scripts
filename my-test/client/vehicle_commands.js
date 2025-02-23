@@ -1,6 +1,37 @@
+
+
+///////////////
+// Vehicle
+///////////////
+
 // TODO Figure out how to remove the vehicle on here.
 
 // TODO Figure out how to use this SET_CAR_ON_GROUND_PROPERLY
+
+// Fix the players current vehicle
+addCommandHandler("fixveh", function (command, text) {
+	if (player.isInVehicle) {
+		let vehicle = player.vehicle;
+		// player.vehicle.fix();
+		vehicle.fix();
+	}
+});
+
+// I figured out how to check if a player is in a vehicle.
+addCommandHandler("explodeveh", function (command, text) {
+	let player = localPlayer;
+	let tempCar = 0;
+	let isInVehicle = natives.isCharInAnyCar(player);
+
+	if (isInVehicle) {
+		let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+		natives.explodeCar(vehicle, true, false);
+		// message("You are in a vehicle");
+	} else {
+		message("You are not in a vehicle.");
+	}
+});
+
 
 addCommandHandler("removeveh", function(command, text) {
 	let player = localPlayer;
