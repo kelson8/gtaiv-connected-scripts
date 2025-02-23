@@ -25,8 +25,6 @@ Files (client folder):
 <summary> List of commands in commands.js </summary>
 
 * /spawn (Teleport to spawn)
-* /fixveh (Fix current vehicle)
-* /explodeveh (Blow up current vehicle)
 * /clearwl (Clear wanted level)
 * /maxwl (Give max wanted level)
 * /weapon1 (Give weapon set 1)
@@ -87,6 +85,8 @@ Files (client folder):
 <details>
 <summary> List of commands in vehicle_commands.js </summary>
 
+* /fixveh (Fix current vehicle)
+* /explodeveh (Blow up current vehicle)
 * /removevehwindows (This is untested and possibly incomplete.)
 
 </details>
