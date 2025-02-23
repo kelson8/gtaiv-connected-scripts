@@ -1,0 +1,7 @@
+
+# Typescript testing.
+my-test/client/test/test.d.ts
+my-test/client/test/typescript_test.ts
+my-test/client/test/*.ts
+my-test/client/test/tsconfig.json
+my-test/client/test/dist

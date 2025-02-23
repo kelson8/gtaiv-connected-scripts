@@ -10,6 +10,19 @@
 
 	<!-- Test commands -->
 	<script language="javascript" type="client" src="client/test/cutscene_commands.js" />
+	<script language="javascript" type="client" src="client/test/explosion_commands.js" />
+	<!-- This is incomplete and broken. -->
+	<!-- <script language="javascript" type="client" src="client/test/text_commands.js" /> -->
+
+
+	<!-- Commands folder -->
+	<script language="javascript" type="client" src="client/commands/radio_commands.js" />
+		<script language="javascript" type="client" src="client/commands/time_commands.js" />
+	<script language="javascript" type="client" src="client/commands/weather_commands.js" />
+
+	<!-- Typescript test, TODO Fix these to work, autocomplete would be nice. -->
+	<!-- <script language="javascript" type="client" src="client/test/typescript_test.ts" /> -->
+	<!-- <script language="javascript" type="client" src="client/test/test.d.ts" /> -->
 
 	<!-- Misc functions for my resource -->
 	<script language="javascript" type="client" src="client/functions.js" />

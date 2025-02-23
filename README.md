@@ -11,6 +11,21 @@ TODO Restructure files like this and test it.
 * Move events into client/events
 
 # Features
+Client/commands folder:
+<details>
+<summary> List of commands in radio_commands.js </summary>
+
+* /mobileradio (This toggles the mobile radio on and off for the game.)
+
+</details>
+
+<details>
+<summary> List of commands in weather_commands.js </summary>
+
+* /weather (sunny, rainy, storm) This sets the weather in the game.
+
+</details>
+
 Files (client folder):
 
 <details>
