@@ -91,4 +91,20 @@ Files (client folder):
 
 </details>
 
+# Warps
+<details>
+<summary> List of warps </summary>
+
+* spawn - Teleports you to the party island spawn
+* parkinglot1 - Teleports you to parking lot #1.
+* garage1 - Teleports you to garage #1 on the map.
+* airport1 - Teleports you to the airport.
+* hospital - Teleports you to the hospital that you can enter.
+* prisonin - Teleports you inside the prison.
+* prisonout - Teleports you outside the prison.
+* island - Teleports you to happiness island.
+* islandst - Teleports you to the statue on happiness island.
+* swings1 - Teleports you to swingset #1 for the swingset glitch.
+
+</details>
 

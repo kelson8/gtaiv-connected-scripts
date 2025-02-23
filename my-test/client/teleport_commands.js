@@ -118,7 +118,7 @@ function teleportPlayer(teleportLocation) {
 			break;
 
 		// Parking lot #1
-		case "test1":
+		case "parkinglot1":
 			if (isPlayerInVehicle()) {
 				warpPlayerVehicle(car1posX + 3, car1posY + 3, car1posZ);
 			} else {
@@ -199,27 +199,13 @@ function teleportPlayer(teleportLocation) {
 			}
 			break;
 
-
-		// TODO Add these
-		// case "prison":
-		//    player.position = [hospitalPosX, hospitalPosY, hospitalPosZ];
-		// break;
-
-		
-		// case "island1st":
-		//     player.position = [hospitalPosX, hospitalPosY, hospitalPosZ];
-		//     break;
-
-		// Party mode spawn
 		default:
-			message("Invalid warp! Warp list: spawn, test1, garage1, airport1, hospital, prisonin, prisonout, swings1.");
+			message("Invalid warp! Warp list: spawn, parkinglot1, garage1, airport1, hospital, prisonin, prisonout, swings1.");
 		// }
 	}
 }
 
 // Moved function for this into teleportPlayer function above.
 addCommandHandler("warp", function (command, text) {
-	// switch (text) {
 	teleportPlayer(text);
-	// }
 });
