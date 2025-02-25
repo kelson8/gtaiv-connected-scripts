@@ -13,12 +13,44 @@ https://gtamods.com/wiki/List_of_native_functions_(GTA_IV)
 * EXTINGUISH_CHAR_FIRE
 * SET_CHAR_ACCURACY
 * SET_CAR_ON_GROUND_PROPERLY
-*
-*
-*
-*
-*
 
+CREATE_EMERGENCY_SERVICES_CAR (model, x, y, z):
+ https://gtamods.com/wiki/CREATE_EMERGENCY_SERVICES_CAR
+ 
+ int, x, y, z, float (unknown), float (unknown, 1 suggested)
+CREATE_CHECKPOINT (Checkpoint type, float, float, float,:
+ https://gtamods.com/wiki/CREATE_CHECKPOINT
+ 
+ALLOW_EMERGENCY_SERVICES:
+ https://gtamods.com/wiki/ALLOW_EMERGENCY_SERVICES
+ 
+ARE_TAXI_LIGHTS_ON:
+ https://gtamods.com/wiki/ARE_TAXI_LIGHTS_ON
+ 
+SET_TAXI_LIGHTS:
+ https://gtamods.com/wiki/SET_TAXI_LIGHTS
+ 
+Apply force:
+APPLY_FORCE_TO_CAR:
+ https://gtamods.com/wiki/APPLY_FORCE_TO_CAR
+* int (Car ID)
+* bool (Unknown, suggested: true)
+* float (X, force amount)
+* float (Y, force amount)
+* float (Z, force amount)
+* float (X, force position)
+* float (Y, force position)
+* float (Z, force position)
+* bool (Unknown, suggested: true)
+* bool (IsForceDirectionRelative)
+* bool (Unknown, suggested: true)
+* bool (Unknown, suggested: true)
+
+https://gtamods.com/wiki/APPLY_FORCE_TO_OBJECT
+* Same params as above, switch out "int (Car ID)" for "int (Object ID)"
+
+https://gtamods.com/wiki/APPLY_FORCE_TO_PED
+* Same params as above, switch out "int (Object ID)" for "int (Ped ID)"
 </details>
 
 <details>
@@ -232,16 +264,10 @@ What are these ones?
 * TASK_OPEN_DRIVER_DOOR
 * TASK_OPEN_PASSENGER_DOOR
 * TASK_PLAY_ANIM
-*
+
 * TASK_SAY
 * TASK_SEEK_COVER_FROM_PED
 * TASK_SIT_DOWN
-*
-*
-*
-*
-*
-*
 </details>
 
 
@@ -260,8 +286,9 @@ What are these ones?
     SET_SENSE_RANGE( l_U3195[l_U3013]._fU0, 140.00000000 );
     SET_CHAR_SHOOT_RATE( l_U3195[l_U3013]._fU0, 75 );
 ```
-<details>
+</details>
 
+<br>
 
 Look for a native for this: Getting marker coords gta 4 native
 

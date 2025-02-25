@@ -18,26 +18,27 @@ addCommandHandler("fixveh", function (command, text) {
 });
 
 // I figured out how to check if a player is in a vehicle.
-addCommandHandler("explodeveh", function (command, text) {
-    let player = localPlayer;
+// Moved into crossgame_test.js, that one works better.
+// addCommandHandler("explodeveh", function (command, text) {
+//     let player = localPlayer;
 
-    if (game.game == GAME_GTA_IV) {
+//     if (game.game == GAME_GTA_IV) {
 
-        let tempCar = 0;
-        let isInVehicle = natives.isCharInAnyCar(player);
+//         let tempCar = 0;
+//         let isInVehicle = natives.isCharInAnyCar(player);
 
-        if (isInVehicle) {
-            let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-            natives.explodeCar(vehicle, true, false);
-            // message("You are in a vehicle");
-        } else {
-            message("You are not in a vehicle.");
-        }
-    } else {
-        message("This only works on GTA IV");
-    }
+//         if (isInVehicle) {
+//             let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+//             natives.explodeCar(vehicle, true, false);
+//             // message("You are in a vehicle");
+//         } else {
+//             message("You are not in a vehicle.");
+//         }
+//     } else {
+//         message("This only works on GTA IV");
+//     }
 
-});
+// });
 
 
 addCommandHandler("removeveh", function (command, text) {

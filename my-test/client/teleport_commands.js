@@ -98,6 +98,7 @@ function warpPlayerVehicle(posX, posY, posZ) {
 
 // Teleport player with a fade in option
 function warpPlayerFadeIn(posX, posY, posZ) {
+	if (game.game == GAME_GTA_IV) {
 	let doScreenFadeOut = natives.doScreenFadeOut;
 	let doScreenFadeIn = natives.doScreenFadeIn;
 	let loadScene = natives.loadScene;
@@ -113,6 +114,9 @@ function warpPlayerFadeIn(posX, posY, posZ) {
 
 
 	doScreenFadeIn(1000);
+	} else {
+		message("This only works on GTA IV");
+	}
 }
 
 function teleportPlayer(teleportLocation) {
@@ -217,10 +221,10 @@ function teleportPlayer(teleportLocation) {
 
 // Moved function for this into teleportPlayer function above.
 // TODO Move this to using the crossgame_test once I fix it up.
-addCommandHandler("warp", function (command, text) {
+addCommandHandler("warpiv", function (command, text) {
 	if (game.game == GAME_GTA_IV) {
 	teleportPlayer(text);
 	} else {
-		message("This only works on GTA IV");
+		message("This only works on GTA IV, use /warp");
 	}
 });

@@ -9,9 +9,17 @@ TODO Restructure files like this and test it.
 * Move commands into client/commands
 * Move functions into client/functions
 * Move events into client/events
+* Make this fully work on GTA 3, VC, SA, and IV. 
+* Separate out functions in shared/util.js - This will take a bit to do.
+
 
 # Features
-Client/commands folder:
+### Cross game test
+I have a crossgame_test.js file in the client and server folders that mostly works between GTA 3, VC, and SA, it is untesed on GTA IV.
+
+It has features like god mode, spawning vehicles, warping, and more to come. Mostly using the util.js from v-sandbox.
+
+### Client/commands folder:
 <details>
 <summary> List of commands in radio_commands.js </summary>
 
@@ -123,3 +131,6 @@ Files (client folder):
 
 </details>
 
+# Credits
+Credit to VortexFTW on github for most functions in shared/util.js, most of this came from the v-sandbox resource.
+* https://github.com/VortrexFTW/v-essentials/blob/master/v-sandbox/shared/util.js
