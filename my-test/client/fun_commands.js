@@ -1,11 +1,15 @@
-addCommandHandler("gravoff", function(command, text){
-    natives.setGravityOff(true);
-    message("You can now float away.");
+addCommandHandler("gravoff", function (command, text) {
+    if (game.game == GAME_GTA_IV) {
+        natives.setGravityOff(true);
+        message("You can now float away.");
+    }
 });
 
-addCommandHandler("gravon", function(command, text){
-    natives.setGravityOff(false);
-    message("You have gravity again.");
+addCommandHandler("gravon", function (command, text) {
+    if (game.game == GAME_GTA_IV) {
+        natives.setGravityOff(false);
+        message("You have gravity again.");
+    }
 });
 
 // TODO Test these natives later

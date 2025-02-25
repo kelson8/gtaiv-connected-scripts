@@ -21,6 +21,7 @@ let setRoute = natives.setRoute;
 // I finally got this working!!! Thats amazing.
 // This shows a blip, sets the value of tempBlip to the blip and can be removed in the command.
 function addBlipForCoord(){
+    if (game.game == GAME_GTA_IV) {
     let position = [car1posX, car1posY, car1posZ];
  
     let blip = natives.addBlipForCoord(position, tempBlip);
@@ -32,18 +33,26 @@ function addBlipForCoord(){
     blipEnabled = true;
 
     return blip;
+    } else {
+        message("This only works on GTA IV");
+    }
 }
 
 // Remove the blip
 function removeBlip(){
+    if (game.game == GAME_GTA_IV) {
     natives.removeBlip(tempBlip);
     setRoute(tempBlip, false);
     // Test
     blipEnabled = false;
+    } else {
+        message("This only works on GTA IV");
+    }
 }
 
 addCommandHandler("toggleblip", function(command, text) {
     // let blip = addBlipForCoord();
+    if (game.game == GAME_GTA_IV) {
     let doesBlipExist = natives.doesBlipExist(tempBlip);
 
     if(!doesBlipExist){
@@ -51,6 +60,9 @@ addCommandHandler("toggleblip", function(command, text) {
     } else {
         removeBlip();
     }
+} else {
+    message("This only works on GTA IV");
+}
 });
 
 // while(blipEnabled){

@@ -6,15 +6,15 @@ let player = localPlayer;
 let playerPos = player.position;
 
 // https://forum.gtaconnected.com/index.php/topic,37.0.html
-let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife", "Baseball Bat",
-	"Shovel", "Pool Cue", "Katana", "Chainsaw", "Purple Dildo",
-	"Dildo", "Vibrator", "Silver Vibrator", "Flowers", "Cane", "Grenade",
-	"Teargas", "Molotov Cocktail", "Unknown", "Unknown", "Unknown",
-	"9mm", "Silenced 9mm", "Desert Eagle", "Shotgun", "Sawnoff Shotgun",
-	"Combat Shotgun", "Uzi", "MP5", "AK-47", "M4", "Tec-9", "Country Rifle",
-	"Sniper Rifle", "RPG", "HS Rocket", "Flamethrower", "Minigun", "Satchel Charge",
-	"Detonator", "Spraycan", "Fire Extinguisher", "Camera", "Night Vision Goggles",
-	"Thermal Goggles", "Parachute", "Cellphone", "Jetpack", "Skateboard"];
+// let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife", "Baseball Bat",
+// 	"Shovel", "Pool Cue", "Katana", "Chainsaw", "Purple Dildo",
+// 	"Dildo", "Vibrator", "Silver Vibrator", "Flowers", "Cane", "Grenade",
+// 	"Teargas", "Molotov Cocktail", "Unknown", "Unknown", "Unknown",
+// 	"9mm", "Silenced 9mm", "Desert Eagle", "Shotgun", "Sawnoff Shotgun",
+// 	"Combat Shotgun", "Uzi", "MP5", "AK-47", "M4", "Tec-9", "Country Rifle",
+// 	"Sniper Rifle", "RPG", "HS Rocket", "Flamethrower", "Minigun", "Satchel Charge",
+// 	"Detonator", "Spraycan", "Fire Extinguisher", "Camera", "Night Vision Goggles",
+// 	"Thermal Goggles", "Parachute", "Cellphone", "Jetpack", "Skateboard"];
 
 // TODO Figure out how to make this work for my values in config.js.
 
@@ -36,7 +36,7 @@ let weaponNames = ["Fist", "Brass Knuckles", "Golf Club", "Nightstick", "Knife",
 // https://github.com/squishylemon/Lspawns/blob/main/Client/player.js
 // addCommandHandler("spawn", function(command, text, client) {
 addCommandHandler("spawn", function (command, text) {
-	if(isPlayerInVehicle()){
+	if (isPlayerInVehicle()) {
 		warpPlayerVehicle(spawnPosX, spawnPosY, spawnPosZ);
 	} else {
 		warpPlayerFadeIn(spawnPosX, spawnPosY, spawnPosZ);
@@ -67,18 +67,22 @@ addCommandHandler("maxwl", function (command, text) {
 
 // https://gtamods.com/wiki/List_of_Weapons_(GTA4)
 // Give the player poolcue, grenades, pistol, shotgun, mp5, ak47, rocket launcher, Sniper
-addCommandHandler("weapon1", function (command, text) {
+// TODO Move into client/functions/give_weapons.js
+addCommandHandler("weaponall", function (command, text) {
 	// https://wiki.gtaconnected.com/ped.giveWeapon
 	// player.giveWeapon(29, 999, false);
-	player.giveWeapon(2, 99, false); // Pool cue
-	player.giveWeapon(4, 999, false); // Grenades
-	player.giveWeapon(7, 999, false); // Pistol
-	player.giveWeapon(10, 999, false); // Shotgun
-	player.giveWeapon(13, 999, false); // MP5
-	player.giveWeapon(14, 999, false); // AK47
-	player.giveWeapon(16, 999, false); // Rocket Launcher
-	player.giveWeapon(18, 999, false); // Sniper
-	message("You have been given most of the weapons!");
+	if (game.game == GAME_GTA_IV) {
+		player.giveWeapon(2, 99, false); // Pool cue
+		player.giveWeapon(4, 999, false); // Grenades
+		player.giveWeapon(7, 999, false); // Pistol
+		player.giveWeapon(10, 999, false); // Shotgun
+		player.giveWeapon(13, 999, false); // MP5
+		player.giveWeapon(14, 999, false); // AK47
+		player.giveWeapon(16, 999, false); // Rocket Launcher
+		player.giveWeapon(18, 999, false); // Sniper
+		message("You have been given most of the weapons!");
+	}
+
 });
 
 
@@ -92,16 +96,40 @@ addCommandHandler("weapon1", function (command, text) {
 // Test
 ///////////////
 
+// TODO Set this up.
+addCommandHandler("blipcoords", function (command, text) {
+	let doesBlipExist = natives.doesBlipExist;
+	let getFirstBlipInfoId = natives.getFirstBlipInfoId;
+	let getBlipCoords = natives.getBlipCoords;
+	// https://gtamods.com/wiki/Blip_(GTA_IV)
+	let targetMarkerBlipId = 8;
+	let coords = 0;
+	let tempPos = 0;
+
+	// if (doesBlipExist(targetMarkerBlipId)) {
+	if (doesBlipExist(getFirstBlipInfoId(targetMarkerBlipId))) {
+
+
+		// if (getFirstBlipInfoId(targetMarkerBlipId)) {
+			coords = getBlipCoords(targetMarkerBlipId, tempPos);
+			// This shows "Object vec3, I wonder how to display it."
+			// message(`${coords}`);
+			message(`TempPos: ${tempPos}, coords: ${coords.x}, ${coords.y}, ${coords.z}`);
+			// player.position = [coords.x, coords.y, coords.z];
+		// }
+	}
+});
+
 // 722.57110000, 1383.07900000, 13.30010000
 // Open a garage
 addCommandHandler("opengarage", function (command, text) {
 	let isGarageClosed = natives.isGarageClosed;
 	let openGarage = natives.openGarage;
 
-	if(isGarageClosed("BxGRG1")){
+	if (isGarageClosed("BxGRG1")) {
 		openGarage("BxGRG1");
 	}
-	
+
 });
 
 // Close a garage, this doesn't seem to work.
@@ -112,12 +140,12 @@ addCommandHandler("closegarage", function (command, text) {
 	if (isGarageOpen("BxGRG1")) {
 		closeGarage("BxGRG1");
 	}
-	
+
 });
 
 // Attempt to start a game script
 // This works now? I think I just figured out how to start the mission scripts and stuff.
-addCommandHandler("startscript", function(command, text) {
+addCommandHandler("startscript", function (command, text) {
 	// https://gtamods.com/wiki/START_NEW_SCRIPT
 	// This script launches the computer in game.
 	let scriptName = "computerMain";
@@ -127,12 +155,7 @@ addCommandHandler("startscript", function(command, text) {
 	startScript(scriptName);
 });
 
-// TODO Figure this out for San Andreas
-addCommandHandler("scmtest", function (command, text) {
-	// gta.scriptCommand("ADD_BLIP_FOR_COORD", 0, 0, 0);
-	// natives.ADD_BLIP_FOR_COORD(0, 0, 0);
 
-});
 
 // addCommandHandler("", function(command, text){
 

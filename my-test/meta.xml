@@ -5,20 +5,25 @@
 	<script language="javascript" type="client" src="client/commands.js" />
 	<script language="javascript" type="client" src="client/blip_commands.js" />
 
-	<!-- Events -->
-	<script language="javascript" type="client" src="client/events.js" />
+
 
 	<!-- Test commands -->
 	<script language="javascript" type="client" src="client/test/cutscene_commands.js" />
 	<script language="javascript" type="client" src="client/test/explosion_commands.js" />
+
+	<script language="javascript" type="client" src="client/test/test_commands.js" />
+
+	<!-- Events -->
+	<script language="javascript" type="client" src="client/test/events.js" />
+
+
 	<!-- This is incomplete and broken. -->
 	<!-- <script language="javascript" type="client" src="client/test/text_commands.js" /> -->
 
-
 	<!-- Commands folder -->
 	<script language="javascript" type="client" src="client/commands/radio_commands.js" />
-		<script language="javascript" type="client" src="client/commands/time_commands.js" />
-	<script language="javascript" type="client" src="client/commands/weather_commands.js" />
+	<script language="javascript" type="client" src="client/commands/time_commands.js" />
+	<!-- <script language="javascript" type="client" src="client/commands/weather_commands.js" /> -->
 
 	<!-- Typescript test, TODO Fix these to work, autocomplete would be nice. -->
 	<!-- <script language="javascript" type="client" src="client/test/typescript_test.ts" /> -->
@@ -34,10 +39,21 @@
 	<script language="javascript" type="client" src="client/teleport_commands.js" />
 	<script language="javascript" type="client" src="client/vehicle_commands.js" />
 	
-	<!-- Server scripts, nothing here yet. -->
-
+	<!-- Server scripts. -->
+	<!-- Commands folder -->
+	<!-- I moved the weather stuff into here. -->
+	<script language="javascript" type="client" src="server/commands/weather_commands.js" />
 	<!-- Config -->
 	<script src="config.js" type="client" language="javascript" />
 	<script src="config.js" type="server" language="javascript" />
+
+	<!-- Shared folder -->
+	<!-- TODO Move config into here -->
+	<script src="shared/util.js" type="client" language="javascript" />
+	<script src="shared/util.js" type="server" language="javascript" />
+
+	<!-- TODO Activate this later, it will be a test for code running on 3, VC, IV, and SA. -->
+	<script src="client/test/crossgame_test.js" type="client" language="javascript" />
+	<script src="server/test/crossgame_test.js" type="server" language="javascript" />
 	
 </meta>

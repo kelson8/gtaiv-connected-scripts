@@ -52,9 +52,14 @@ TODO Adapt this for the below code, I wonder how to check for
 
 // TODO Move this
 function isPlayerInVehicle() {
+	if (game.game == GAME_GTA_IV) {
 	let isInVehicle = natives.isCharInAnyCar(player);
 
 	return isInVehicle;
+	} else {
+		message("This only works on GTA IV");
+	}
+
 }
 
 // Position should be a vector3
@@ -62,28 +67,33 @@ function isPlayerInVehicle() {
 // Warp the player and vehicle if they are in a vehicle.
 // This fades the screen out and back in.
 function warpPlayerVehicle(posX, posY, posZ) {
-	let warpCharFromCarToCoord = natives.warpCharFromCarToCoord;
-	let getCarCharIsUsing = natives.getCarCharIsUsing;
+	if (game.game == GAME_GTA_IV) {
+		let warpCharFromCarToCoord = natives.warpCharFromCarToCoord;
+		let getCarCharIsUsing = natives.getCarCharIsUsing;
 
-	// I had these reversed, I need to do "doScreenFadeOut" first then run "doScreenFadeIn"
-	let doScreenFadeOut = natives.doScreenFadeOut;
-	let doScreenFadeIn = natives.doScreenFadeIn;
+		// I had these reversed, I need to do "doScreenFadeOut" first then run "doScreenFadeIn"
+		let doScreenFadeOut = natives.doScreenFadeOut;
+		let doScreenFadeIn = natives.doScreenFadeIn;
 
-	let setCarCoordinates = natives.setCarCoordinates;
-	let tempCar = 0;
-	let player = localPlayer;
+		let setCarCoordinates = natives.setCarCoordinates;
+		let tempCar = 0;
+		let player = localPlayer;
 
-	if (isPlayerInVehicle()) {
-		// let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-		let vehicle = getCarCharIsUsing(player, tempCar);
-		// warpCharFromCarToCoord(player, vehicle, position);
-		// Well this forces the player out of the vehicle and warps, hmm, could be useful for something.
-		// How could I teleport the vehicle?
-		// warpCharFromCarToCoord(player, position, vehicle);
-		doScreenFadeOut(500);
-		setCarCoordinates(vehicle, posX, posY, posZ);
-		doScreenFadeIn(500);
+		if (isPlayerInVehicle()) {
+			// let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+			let vehicle = getCarCharIsUsing(player, tempCar);
+			// warpCharFromCarToCoord(player, vehicle, position);
+			// Well this forces the player out of the vehicle and warps, hmm, could be useful for something.
+			// How could I teleport the vehicle?
+			// warpCharFromCarToCoord(player, position, vehicle);
+			doScreenFadeOut(500);
+			setCarCoordinates(vehicle, posX, posY, posZ);
+			doScreenFadeIn(500);
+		}
+	} else {
+		message("This only works on GTA IV");
 	}
+
 }
 
 // Teleport player with a fade in option
@@ -206,6 +216,11 @@ function teleportPlayer(teleportLocation) {
 }
 
 // Moved function for this into teleportPlayer function above.
+// TODO Move this to using the crossgame_test once I fix it up.
 addCommandHandler("warp", function (command, text) {
+	if (game.game == GAME_GTA_IV) {
 	teleportPlayer(text);
+	} else {
+		message("This only works on GTA IV");
+	}
 });

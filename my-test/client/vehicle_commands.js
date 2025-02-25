@@ -10,56 +10,74 @@
 
 // Fix the players current vehicle
 addCommandHandler("fixveh", function (command, text) {
-	if (player.isInVehicle) {
-		let vehicle = player.vehicle;
-		// player.vehicle.fix();
-		vehicle.fix();
-	}
+    if (player.isInVehicle) {
+        let vehicle = player.vehicle;
+        // player.vehicle.fix();
+        vehicle.fix();
+    }
 });
 
 // I figured out how to check if a player is in a vehicle.
 addCommandHandler("explodeveh", function (command, text) {
-	let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
+    let player = localPlayer;
 
-	if (isInVehicle) {
-		let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-		natives.explodeCar(vehicle, true, false);
-		// message("You are in a vehicle");
-	} else {
-		message("You are not in a vehicle.");
-	}
+    if (game.game == GAME_GTA_IV) {
+
+        let tempCar = 0;
+        let isInVehicle = natives.isCharInAnyCar(player);
+
+        if (isInVehicle) {
+            let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+            natives.explodeCar(vehicle, true, false);
+            // message("You are in a vehicle");
+        } else {
+            message("You are not in a vehicle.");
+        }
+    } else {
+        message("This only works on GTA IV");
+    }
+
 });
 
 
-addCommandHandler("removeveh", function(command, text) {
-	let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
-    
-    let deleteCar = natives.deleteCar;
-    let markCarAsNoLongerNeeded = natives.markCarAsNoLongerNeeded;
+addCommandHandler("removeveh", function (command, text) {
+    let player = localPlayer;
+
+    if (game.game == GAME_GTA_IV) {
+        let tempCar = 0;
+        let isInVehicle = natives.isCharInAnyCar(player);
+
+        let deleteCar = natives.deleteCar;
+        let markCarAsNoLongerNeeded = natives.markCarAsNoLongerNeeded;
 
 
-    if(isInVehicle){
-        let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-        // natives.deleteCar(vehicle);
-        deleteCar(vehicle);
-        markCarAsNoLongerNeeded(vehicle);
+        if (isInVehicle) {
+            let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+            // natives.deleteCar(vehicle);
+            deleteCar(vehicle);
+            markCarAsNoLongerNeeded(vehicle);
+        }
+    } else {
+        message("This only works on GTA IV");
     }
 });
 
 // Fix the players vehicle
-addCommandHandler("fixveh", function(command, text){
+addCommandHandler("fixveh", function (command, text) {
     let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
+
+    if (game.game == GAME_GTA_IV) {
+        let tempCar = 0;
+        let isInVehicle = natives.isCharInAnyCar(player);
 
 
-    if(isInVehicle){
-        let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-        natives.fixCar(vehicle);
+        if (isInVehicle) {
+            let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+            natives.fixCar(vehicle);
+        }
+
+    } else {
+        message("This only works on GTA IV");
     }
 
 });
@@ -67,13 +85,18 @@ addCommandHandler("fixveh", function(command, text){
 // Toggle god mode on the players vehicle.
 // TODO Fix this one to work.
 let vInvincible = false;
-addCommandHandler("godveh", function(command, text){
+addCommandHandler("godveh", function (command, text) {
     vInvincible = !vInvincible;
     let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
+    let tempCar = 0;
+    let isInVehicle = natives.isCharInAnyCar(player);
 
-    message("Not implemented yet!");
+    if (game.game == GAME_GTA_IV) {
+        message("Not implemented yet!");
+
+    } else {
+        message("Not implemented yet!");
+    }
     // if(isInVehicle){
     //     let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
 
@@ -96,21 +119,27 @@ addCommandHandler("godveh", function(command, text){
 });
 
 // TODO Test this
-addCommandHandler("removevehwindows", function(command, text){
+addCommandHandler("removevehwindows", function (command, text) {
     let player = localPlayer;
-	let tempCar = 0;
-	let isInVehicle = natives.isCharInAnyCar(player);
+
+    if (game.game == GAME_GTA_IV) {
+        let tempCar = 0;
+        let isInVehicle = natives.isCharInAnyCar(player);
 
 
-    if(isInVehicle){
-        let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
-        // natives.fixCar(vehicle);
-        for(i = 1; i < 4; i++){
-            natives.removeCarWindow(vehicle, i);
+        if (isInVehicle) {
+            let vehicle = natives.storeCarCharIsInNoSave(player, tempCar);
+            // natives.fixCar(vehicle);
+            for (i = 1; i < 4; i++) {
+                natives.removeCarWindow(vehicle, i);
+            }
+
+            message("Vehicle windows removed.");
+        } else {
+            message("You are not in a car.");
         }
-
-        message("Vehicle windows removed.");
     } else {
-        message("You are not in a car.");
+        message("This only works on GTA IV");
     }
+
 });

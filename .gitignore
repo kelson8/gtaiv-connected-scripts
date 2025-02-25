@@ -5,3 +5,9 @@ my-test/client/test/typescript_test.ts
 my-test/client/test/*.ts
 my-test/client/test/tsconfig.json
 my-test/client/test/dist
+my-test/client/test/typescript_test.js
+
+# Incomplete
+my-test/client/test/explosion_commands.js
+my-test/client/test/qub3d_commands.js
+my-test/client/test/text_commands.js

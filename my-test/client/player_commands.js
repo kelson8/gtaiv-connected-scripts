@@ -20,9 +20,10 @@ if(localPlayer.position.distance(spawnPosition) <= 100) {
 addCommandHandler("god", function (command, text) {
 	// if(client.administrator){
 	// if(clientAdmin){
+	if (game.game == GAME_GTA_IV) {
 		pInvincible = !pInvincible;
 		if (pInvincible) {
-	
+
 			localPlayer.invincible = false;
 			// 
 			natives.setCharProofs(localPlayer, false, false, false, false, false);
@@ -31,8 +32,11 @@ addCommandHandler("god", function (command, text) {
 			localPlayer.invincible = true;
 			natives.setCharProofs(localPlayer, true, true, true, true, true);
 			message("Invincibility enabled.");
-	
+
 		}
+	} else {
+		message("This only works on GTA IV");
+	}
 	// } else {
 	// 	message("You don't have permission!");
 	// }
@@ -63,14 +67,17 @@ addCommandHandler("heal", function (command, text) {
 addCommandHandler("kill", function (command, text) {
 	let player = localPlayer;
 
-    // player.health = 0;
+	// player.health = 0;
 	// player.armour = 0;
-    // let taskDie = natives.taskDie;
-    // taskDie(true);
+	// let taskDie = natives.taskDie;
+	// taskDie(true);
+	if (game.game == GAME_GTA_IV) {
+		let explodeCharHead = natives.explodeCharHead;
+		explodeCharHead(player);
+	} else {
+		message("This only works on GTA IV");
+	}
 
-    let explodeCharHead = natives.explodeCharHead;
-    explodeCharHead(player);
-    
 });
 
 // Display the players current coords.
@@ -97,37 +104,42 @@ addCommandHandler("sky", function (command, text) {
 // Set your wanted level
 // This actually works.
 addCommandHandler("setmaxwl", function (command, text) {
-	switch (text) {
-		case "0":
-			natives.setMaxWantedLevel(0);
-			message("Set max wanted level to 0");
-			break;
-		case "1":
-			natives.setMaxWantedLevel(1);
-			message("Set max wanted level to 1");
-			break;
-		case "2":
-			natives.setMaxWantedLevel(2);
-			message("Set max wanted level to 2");
-			break
-		case "3":
-			natives.setMaxWantedLevel(3);
-			message("Set max wanted level to 3");
-			break;
-		case "4":
-			natives.setMaxWantedLevel(4);
-			message("Set max wanted level to 4");
-			break;
-		case "5":
-			natives.setMaxWantedLevel(5);
-			message("Set max wanted level to 5");
-			break;
-		case "6":
-			natives.setMaxWantedLevel(6);
-			message("Set max wanted level to 6");
-			break;
-		default:
-			message("You can choose from 0-6, 0 meaning wanted level is disabled.");
-			break;
+	if (game.game == GAME_GTA_IV) {
+		switch (text) {
+			case "0":
+				natives.setMaxWantedLevel(0);
+				message("Set max wanted level to 0");
+				break;
+			case "1":
+				natives.setMaxWantedLevel(1);
+				message("Set max wanted level to 1");
+				break;
+			case "2":
+				natives.setMaxWantedLevel(2);
+				message("Set max wanted level to 2");
+				break
+			case "3":
+				natives.setMaxWantedLevel(3);
+				message("Set max wanted level to 3");
+				break;
+			case "4":
+				natives.setMaxWantedLevel(4);
+				message("Set max wanted level to 4");
+				break;
+			case "5":
+				natives.setMaxWantedLevel(5);
+				message("Set max wanted level to 5");
+				break;
+			case "6":
+				natives.setMaxWantedLevel(6);
+				message("Set max wanted level to 6");
+				break;
+			default:
+				message("You can choose from 0-6, 0 meaning wanted level is disabled.");
+				break;
+		}
+	} else {
+		message("This only works on GTA IV");
 	}
+
 });

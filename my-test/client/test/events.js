@@ -24,3 +24,13 @@
 //         setCharCoordinates(player, [airport1PosX, airport1PosY, airport1PosZ]);
 //     }
 // });
+
+// Add events that can be used between server -> client or client -> server.
+// TODO Test this with gta 4 natives, make a heal function that runs on the server but triggers a native on the client.
+// I should be able to check for permissions a bit easier like that.
+// addNetworkHandler(netName, function() {
+
+// });
+
+// Add custom events
+// addEvent();
