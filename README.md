@@ -15,7 +15,7 @@ TODO Restructure files like this and test it.
 
 # Features
 ### Cross game test
-I have a crossgame_test.js file in the client and server folders that mostly works between GTA 3, VC, and SA, it is untesed on GTA IV.
+I have a crossgame_test.js file in the client and server folders that mostly works between GTA 3, VC, and SA, it also seems to work fine on GTA IV.
 
 It has features like god mode, spawning vehicles, warping, and more to come. Mostly using the util.js from v-sandbox.
 
