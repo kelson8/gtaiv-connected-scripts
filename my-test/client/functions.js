@@ -2,6 +2,22 @@
 // Scripts
 ///
 
+// TODO Test this
+function doesScriptExist(scriptName)
+{
+	if (game.game == GAME_GTA_IV) {
+		let doesScriptExistNative = natives.doesScriptExist;
+
+		if(doesScriptExistNative(scriptName))
+		{
+			return true;
+		}
+
+		return false;
+
+	}
+}
+
 // Start a script in the game, I made this into its own function
 function startScript(scriptName) {
 	if (game.game == GAME_GTA_IV) {

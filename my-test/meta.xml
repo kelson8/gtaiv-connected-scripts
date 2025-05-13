@@ -1,6 +1,12 @@
 <meta>
 	<!-- <script language="javascript" type="server" src="spawn_vehicles_s.js" /> -->
 	<!-- Client scripts -->
+	<!-- Test for setting the respawn points -->
+	<!-- <script language="javascript" type="client" src="client/set_respawns.js" /> -->
+
+	<!-- Test for fading the player in, and setting position on launch without party mode. -->
+	<!-- <script language="javascript" type="client" src="client/spawn_player.js" /> -->
+
 	<script language="javascript" type="client" src="client/spawn_vehicles.js" />
 	<script language="javascript" type="client" src="client/commands.js" />
 	<script language="javascript" type="client" src="client/blip_commands.js" />
@@ -55,5 +61,9 @@
 	<!-- TODO Activate this later, it will be a test for code running on 3, VC, IV, and SA. -->
 	<script src="client/test/crossgame_test.js" type="client" language="javascript" />
 	<script src="server/test/crossgame_test.js" type="server" language="javascript" />
+
+	<!-- Server scripts -->
+	<!-- Test for setting the respawn points -->
+	<!-- <script language="javascript" type="server" src="server/set_respawns.js" /> -->
 	
 </meta>

@@ -214,6 +214,8 @@ function createPed(givePedWeapon, doesPedHatePlayer, doesPedEnterVehicle, doesPl
 			let taskCarDriveWander = natives.taskCarDriveWander;
 			let taskWarpCharIntoCarAsPassenger = natives.taskWarpCharIntoCarAsPassenger;
 			let speed = 30;
+			// I think 3 might be a little more aggresive, like avoiding lights and going faster.
+			// Possible options (Possibly more): 0, 2, 3, 6 
 			let drivingMode = 2;
 
 
